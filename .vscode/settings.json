@@ -1,0 +1,6 @@
+{
+    "terminal.integrated.env.windows": {
+        "php.validate.executablePath": "C:\\laragon\\bin\\php\\php-7.4.14-nts-Win32-vc15-x64\\php.exe",
+        "php.executablePath": "C:\\laragon\\bin\\php\\php-7.4.14-nts-Win32-vc15-x64\\php.exe",
+    },
+}
