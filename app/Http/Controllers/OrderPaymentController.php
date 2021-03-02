@@ -6,7 +6,7 @@ use App\Order;
 use App\Payment;
 use Illuminate\Http\Request;
 use App\Services\CartService;
-use Illumintate\Support\Facades\DB;
+use Illuminate\Support\Facades\DB;
 
 class OrderPaymentController extends Controller
 {
