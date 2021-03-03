@@ -19,6 +19,9 @@ Route::get('/', 'MainController@index')->name('main');
 //     return view('welcome');
 // })->name('main');
 
+Route::get('profile', 'ProfileController@edit')->name('profile.edit');
+Route::put('profile', 'ProfileController@update')->name('profile.update');
+
 Route::resource('products.carts', 'ProductCartController')->only(['store', 'destroy']);
 
 Route::resource('carts', 'CartController')->only(['index']);
@@ -33,6 +36,7 @@ Route::resource('orders.payments', 'OrderPaymentController')
 
 Auth::routes([
     'verify' => true, // verifica el email del usuario
+    // 'reset' => false, // quita la recuperacion de contraseña
 ]);
 
 // Route::get('/home', 'HomeController@index')->name('home');
