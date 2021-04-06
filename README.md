@@ -60,5 +60,29 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 
-### To migrate and test
-php artisan migrate:fresh --seed
+## To Deply
+
+### 1° Install Composer Dependencies
+
+In terminal execute: composer install
+
+### 2° Install NPM Dependencies
+
+In terminal execute: npm install
+
+### 3° Create a copy of your .env file
+
+In terminal execute: cp .env.example .env
+
+### 4° Generate an app encryption key
+
+php artisan key:generate
+
+### 5° DataBase
+
+(To migrate and test)
+In terminal execute: php artisan migrate:fresh --seed
+
+### 6° Create User Admin
+
+Register user, then change admin_since attribute in database

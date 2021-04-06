@@ -10,4 +10,16 @@ class PanelProduct extends Product
     {
         // se reescribe la funcion
     }
+
+    public function getForeignKey()
+    {
+        $parent = get_parent_class($this);
+        return (new $parent)->getForeignKey();
+    }
+
+    public function getMorphClass()
+    {
+        $parent = get_parent_class($this);
+        return (new $parent)->getMorphClass();
+    }
 }
