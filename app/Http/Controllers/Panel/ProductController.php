@@ -53,6 +53,7 @@ class ProductController extends Controller
     
     public function update(ProductRequest $request, PanelProduct $product)
     {
+        dd($request->validated());
         $product->update( $request->validated() );
 
         return redirect()
