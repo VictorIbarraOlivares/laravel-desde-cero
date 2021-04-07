@@ -78,10 +78,13 @@ In terminal execute: cp .env.example .env
 
 php artisan key:generate
 
-### 5° DataBase
+### 5° DataBase (To migrate and test)
 
-(To migrate and test)
 In terminal execute: php artisan migrate:fresh --seed
+
+### 6° Create symbolic link to images
+
+In terminal execute: php artisan storage:link
 
 ### 6° Create User Admin
 

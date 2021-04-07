@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Scopes\AvailableScope;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\File;
 use App\Http\Requests\ProductRequest;
 
 class ProductController extends Controller
@@ -27,6 +28,12 @@ class ProductController extends Controller
     public function store(ProductRequest $request)
     {
         $product = PanelProduct::create( $request->validated() );
+
+        foreach ($request->images as $image) {
+            $product->images()->create([
+                'path' => 'images/' . $image->store('products', 'images'),
+            ]);
+        }
 
         // return redirect()->back(); // redirige al formulario
         // return redirect()->action('ProductController@index');
@@ -53,8 +60,22 @@ class ProductController extends Controller
     
     public function update(ProductRequest $request, PanelProduct $product)
     {
-        dd($request->validated());
         $product->update( $request->validated() );
+
+        if ( $request->hasFile('images') ) {
+
+            foreach ($product->images as $image) {
+                $path = storage_path("app/public/{$image->path}");
+                File::delete($path);
+                $image->delete();
+            }
+
+            foreach ($request->images as $image) {
+                $product->images()->create([
+                    'path' => 'images/' . $image->store('products', 'images'),
+                ]);
+            }
+        }
 
         return redirect()
             ->route('products.index')
