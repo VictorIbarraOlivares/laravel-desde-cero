@@ -5,6 +5,7 @@ namespace App;
 use App\User;
 use App\Payment;
 use App\Product;
+use App\Scopes\AvailableScope;
 use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
@@ -36,6 +37,9 @@ class Order extends Model
 
     public function getTotalAttribute()
     {
-        return $this->products->pluck('total')->sum();
+        return $this->products()
+        ->withoutGlobalScope(AvailableScope::class)// para ignorar los globalScope
+        ->get()
+        ->pluck('total')->sum();
     }
 }
